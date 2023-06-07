@@ -1,13 +1,16 @@
 const express = require("express");
 const app = express();
 const axios = require("axios");
+// const {
+//   default: ListTranscationTab,
+// } = require("../../../src/pages/billing/list_transcationTab");
 const router = express.Router();
 require("dotenv").config();
 
 // get the url form the .env file
 let url = process.env.BASE_URL;
 
-// for getting the org info
+// for getting available fund info
 router.post("/viewFunds", async (req, res) => {
   const apiUrl = `${url}/billing/viewFunds`;
   // an object that contain all the data the is required to api
@@ -31,6 +34,7 @@ router.post("/viewFunds", async (req, res) => {
   }
 });
 
+// for getting the list of list of transation
 router.post("/listTransactions", async (req, res) => {
   const apiUrl = `${url}/billing/listTransactions`;
   // an object that contain all the data the is required to api
@@ -54,6 +58,7 @@ router.post("/listTransactions", async (req, res) => {
   }
 });
 
+// for getting the list of list of invoice
 router.post("/listInvoices", async (req, res) => {
   const apiUrl = `${url}/billing/listInvoices`;
   // an object that contain all the data the is required to api
@@ -80,6 +85,7 @@ router.post("/listInvoices", async (req, res) => {
   }
 });
 
+// this api give the one perticular invoice
 router.post("/viewInvoice", async (req, res) => {
   const apiUrl = `${url}/billing/viewInvoice`;
   // an object that contain all the data the is required to api
@@ -106,6 +112,8 @@ router.post("/viewInvoice", async (req, res) => {
     console.error("Error:", error);
   }
 });
+
+// for adding the fund
 router.post("/addFunds", async (req, res) => {
   const apiUrl = `${url}/billing/addFunds`;
   // an object that contain all the data the is required to api
@@ -132,6 +140,8 @@ router.post("/addFunds", async (req, res) => {
     console.error("Error:", error);
   }
 });
+
+// view the perticular Transaction
 router.post("/viewTransaction", async (req, res) => {
   const apiUrl = `${url}/billing/viewTransaction`;
   // an object that contain all the data the is required to api

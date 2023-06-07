@@ -31,6 +31,31 @@ router.post("/login", async (req, res) => {
     console.error("Error:", error);
   }
 });
+// 2fa authentication api
+router.post("/twofa", async (req, res) => {
+  const apiUrl = `${url}/auth/twofa`;
+  // an object that contain all the data the is required to api
+  const requestBody = {
+    session_id: req.body.session_id,
+    passcode: req.body.passcode,
+  };
+  console.log(requestBody, " this is not what you think love");
+
+  // Make the POST request with Axios
+  try {
+    const response = await axios.post(apiUrl, requestBody, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = response.data;
+    console.log(data);
+    res.send(data);
+  } catch (error) {
+    // Handle any error during the request
+    console.error("Error:", error);
+  }
+});
 // reset email send    /reset
 router.post("/reset", async (req, res) => {
   const apiUrl = `${url}/auth/reset`;
